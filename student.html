@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vote-student council election</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>
+                <div class="logo">
+                    <img src="logo.jpg" alt="Click2Vote" height="60" style="border-radius:2%;"/>
+            Click2Vote
+            </div></h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html" class="active">Vote</a>
+                    <ul class="dropdown">
+                        <li><a href="student.html">Student Council Elections</a></li>
+                        <li><a href="annual.html">Annual Theme Selection</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html">Results</a>
+                    <ul class="dropdown">
+                        <li><a href="r1.html">Student Results</a></li>
+                        <li><a href="r2.html">Annual Results</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html">Feature</a>
+                    <ul class="dropdown">
+                        <li><a href="f1.html">Standard Feature</a></li>
+                        <li><a href="f2.html">Premium Feature</a></li>
+                        <li><a href="f3.html">E-voting </a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+
+        <section class="voting-form">
+            <h2 style="font-family: cursive;">Student Council Election 2025</h2>
+            <form id="voteForm">
+                <div class="form-group">
+                    <p>Please select your preferred candidate:</p><br><br>
+
+                    <div class="radio-option">
+                        <input type="radio" id="candidate1" name="candidate" value='Aiden Wright - "Transparency and Accountability"' required>
+                        <label for="candidate1">Aiden Wright - "Transparency and Accountability"</label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input type="radio" id="candidate2" name="candidate" value='Barret Wood - "Student Welfare First"' required>
+                        <label for="candidate2">Barret Wood - "Student Welfare First"</label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input type="radio" id="candidate3" name="candidate" value='Wyatt Evans - "Innovation and Progress"' required>
+                        <label for="candidate3">Wyatt Evans - "Innovation and Progress"</label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input type="radio" id="candidate4" name="candidate" value='Kenzo Thompson - "Unity and Diversity"' required>
+                        <label for="candidate4">Kenzo Thompson - "Unity and Diversity"</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="voterId">Student ID:</label>
+                    <input type="text" id="voterId" name="voterId" required>
+                </div>
+
+                <button type="submit" class="submit-button">Submit Vote</button>
+            </form>
+        </section>
+    </main>
+    
+    <script>
+        const candidates = [
+            'Aiden Wright - "Transparency and Accountability"',
+            'Barret Wood - "Student Welfare First"',
+            'Wyatt Evans - "Innovation and Progress"',
+            'Kenzo Thompson - "Unity and Diversity"'
+        ];
+
+        function initializeVotes() {
+            let votes = JSON.parse(localStorage.getItem('votes')) || {};
+            candidates.forEach(name => {
+                if (!(name in votes)) {
+                    votes[name] = 0;
+                }
+            });
+            localStorage.setItem('votes', JSON.stringify(votes));
+        }
+
+        initializeVotes();
+
+        document.getElementById("voteForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const selected = document.querySelector("input[name='candidate']:checked").value;
+
+            let votes = JSON.parse(localStorage.getItem("votes"));
+            votes[selected]++;
+            localStorage.setItem("votes", JSON.stringify(votes));
+
+            alert("Thanks for voting!");
+            window.location.href = "r1.html";
+        });
+    </script>
+      <footer>
+        <div class="footer-container">
+          <div class="footer-center">
+            <h3>VotingSite</h3>
+            <p>&copy; 2025 VotingSite. All rights reserved.</p>
+          </div><br><br><br>
+          <div class="footer-left">
+            <h4>Quick Links</h4><br>
+            <ul>
+              <li><a href="#" style="text-decoration: none;">Home</a></li>
+              <li><a href="#" style="text-decoration: none;">Vote</a></li>
+              <li><a href="#" style="text-decoration: none;">Results</a></li>
+              <li><a href="#" style="text-decoration: none;">FAQs</a></li>
+            </ul>
+        </div>
+        <div class="footer-right">
+                <h4>Follow Us</h4><br>
+                <a href="#" ><i class="fa fa-facebook"></i></a><br>
+                <a href="#" ><i class="fa fa-twitter"></i></a><br>
+                <a href="#"><i class="fa-brands fa-google-plus-g"></i></a><br>
+                <a href="#" ><i class="fa fa-youtube"></i></a><br>
+                <a href="#" ><i class="fa fa-whatsapp"></i></a><br>
+                <a href="#" ><i class="fa fa-instagram"></i></a>
+            
+        </div>
+            <div class="footer-contact">
+                <h4><a href="contact.html" style="text-decoration: none;">Contact Us</h4></a><br>
+                <p>Email: pragatii0702@gmail.com<br>
+                    Phone: 6353422717<br>
+                    Office Hours: Monday-Friday, 9:00 AM - 5:00 PM 
+                </p>
+            </div>
+        </div>
+        <script src="https://kit.fontawesome.com/cb8535f973.js" crossorigin="anonymous"></script>
+      </footer> 
+</body>
+
+</html>
